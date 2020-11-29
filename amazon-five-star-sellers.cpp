@@ -31,11 +31,13 @@ int fiveSellers(vector<vector<int>> productRatings, int ratingThreshold) {
 	int startsNeed = 0;
 	while (currentRating < ratingThreshold) {
 		std::sort(begin(productRatings), end(productRatings), &ratingSort);
+		/*
 		cout << "current rating: " << currentRating << ", startsNeed: " << startsNeed << ". sorting: ";
 		for (auto vv: productRatings) {
 			cout << "[" << vv[0] << ", " << vv[1] << "]=" << vv[0]*1.0/vv[1] << " , ";
 		}
 		cout << endl;
+		*/
 		auto& pr = productRatings[0];
 
 		if (pr[0] == pr[1] || pr[0] >= FIVE_STARS_MAX) continue;
@@ -44,13 +46,7 @@ int fiveSellers(vector<vector<int>> productRatings, int ratingThreshold) {
 		double rating2 = ((pr[0]+1)*1.0 / (pr[1]+1)) / 3 * 100;
 
 		currentRating += (rating2 - rating1);
-		/*
-		currentRating = rating2;
-		for (int i = 1; i < productRatings.size(); i++) {
-			currentRating += productRatings[i][0]*1.0 / productRatings[i][1];
-		}
-		*/
-		cout << "rating 1: " << rating1 << ", rating2: " << rating2 << ", diff: " << currentRating << endl;
+		//cout << "rating 1: " << rating1 << ", rating2: " << rating2 << ", diff: " << currentRating << endl;
 		startsNeed++;
 
 		pr[0] += 1;
